@@ -1,0 +1,35 @@
+[package]
+name = "framework"
+version = "0.1.0"
+edition = "2021"
+exclude = ["chall/"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+quote = "1.0.26"
+threadpool = "1.8.1"
+proc-macro2 = "1.0.66"
+
+tokio = { version = "1", features = ["full"] }
+
+# move-core-types = { path = "../../../../../aptos-core/third_party/move/move-core/types" }
+# move-transactional-test-runner = { path = "../../../../../aptos-core/third_party/move/testing-infra/transactional-test-runner" }
+# move-binary-format = { path = "../../../../../aptos-core/third_party/move/move-binary-format" }
+# move-compiler = { path = "../../../../../aptos-core/third_party/move/move-compiler" }
+
+move-transactional-test-runner = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-transactional-test-runner", branch = "main" }
+move-compiler = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-compiler", branch = "main" }
+move-core-types = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-core-types", branch = "main" }
+move-binary-format = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-binary-format", branch = "main" }
+
+# apt-ctf-framework = { git = "https://github.com/otter-sec/apt-ctf-framework" }
+aptos-crypto = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-crypto", branch = "main" }
+apt-ctf-framework = { path = "../../../../apt-ctf-framework" }
+# aptos-crypto = { path = "../../../../../aptos-core/crates/aptos-crypto" }
+
+
+[patch.crates-io]
+x25519-dalek = { git = "https://github.com/aptos-labs/x25519-dalek", branch = "zeroize_v1" }
+merlin = { git = "https://github.com/aptos-labs/merlin" }
+serde-reflection = { git = "https://github.com/aptos-labs/serde-reflection", rev = "73b6bbf748334b71ff6d7d09d06a29e3062ca075" }

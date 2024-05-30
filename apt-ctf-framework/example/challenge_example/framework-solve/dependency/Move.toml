@@ -1,0 +1,17 @@
+[package]
+name = "challenge"
+version = "1.0.0"
+authors = []
+
+[addresses]
+challenge = "0x1337"
+challenger = "0xf75daa73fc071f93593335eb9033da804777eb94491650dd3f095ce6f778acb6"
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dev-dependencies]

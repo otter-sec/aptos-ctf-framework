@@ -1,0 +1,19 @@
+[package]
+name = "solution"
+version = "1.0.0"
+authors = []
+
+[addresses]
+solution = "0x1338"
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-core.git"
+rev = "mainnet"
+subdir = "aptos-move/framework/aptos-framework"
+
+[dependencies]
+challenge = { local = "../dependency/" }
+
+[dev-dependencies]

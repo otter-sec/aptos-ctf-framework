@@ -1,0 +1,187 @@
+diff --git a/aptos-move/aptos-transactional-test-harness/src/aptos_test_harness.rs b/aptos-move/aptos-transactional-test-harness/src/aptos_test_harness.rs
+index b7839e2394..578cd28fcb 100644
+--- a/aptos-move/aptos-transactional-test-harness/src/aptos_test_harness.rs
++++ b/aptos-move/aptos-transactional-test-harness/src/aptos_test_harness.rs
+@@ -81,7 +81,7 @@ use tempfile::NamedTempFile;
+ /// production settings:
+ ///   - It uses a StateView as its storage backend
+ ///   - It executes transactions through AptosVM, instead of MoveVM directly
+-struct AptosTestAdapter<'a> {
++pub struct AptosTestAdapter<'a> {
+     compiled_state: CompiledState<'a>,
+     storage: FakeDataStore,
+     default_syntax: SyntaxChoice,
+@@ -101,73 +101,73 @@ struct TransactionParameters {
+ 
+ /// Aptos-specific arguments for the publish command.
+ #[derive(Parser, Debug)]
+-struct AptosPublishArgs {
++pub struct AptosPublishArgs {
+     #[clap(long = "private-key", value_parser = RawPrivateKey::parse)]
+-    private_key: Option<RawPrivateKey>,
++    pub private_key: Option<RawPrivateKey>,
+ 
+     #[clap(long = "expiration")]
+-    expiration_time: Option<u64>,
++    pub expiration_time: Option<u64>,
+ 
+     #[clap(long = "sequence-number")]
+-    sequence_number: Option<u64>,
++    pub sequence_number: Option<u64>,
+ 
+     #[clap(long = "gas-price")]
+-    gas_unit_price: Option<u64>,
++    pub gas_unit_price: Option<u64>,
+ 
+     #[clap(long = "override-signer", value_parser= ParsedAddress::parse)]
+-    override_signer: Option<ParsedAddress>,
++    pub override_signer: Option<ParsedAddress>,
+ }
+ 
+ #[derive(Debug, Clone)]
+-struct SignerAndKeyPair {
++pub struct SignerAndKeyPair {
+     address: ParsedAddress,
+     private_key: Option<RawPrivateKey>,
+ }
+ 
+ /// Aptos-specifc arguments for the run command.
+ #[derive(Parser, Debug)]
+-struct AptosRunArgs {
++pub struct AptosRunArgs {
+     #[clap(long = "private-key", value_parser = RawPrivateKey::parse)]
+-    private_key: Option<RawPrivateKey>,
++    pub private_key: Option<RawPrivateKey>,
+ 
+     #[clap(long = "script")]
+-    script: bool,
++    pub script: bool,
+ 
+     #[clap(long = "expiration")]
+-    expiration_time: Option<u64>,
++    pub expiration_time: Option<u64>,
+ 
+     #[clap(long = "sequence-number")]
+-    sequence_number: Option<u64>,
++    pub sequence_number: Option<u64>,
+ 
+     #[clap(long = "gas-price")]
+-    gas_unit_price: Option<u64>,
++    pub gas_unit_price: Option<u64>,
+ 
+     #[clap(long = "show-events")]
+-    show_events: bool,
++    pub show_events: bool,
+ 
+     #[clap(long = "secondary-signers", value_parser = SignerAndKeyPair::parse, num_args = 0..)]
+-    secondary_signers: Option<Vec<SignerAndKeyPair>>,
++    pub secondary_signers: Option<Vec<SignerAndKeyPair>>,
+ }
+ 
+ /// Aptos-specifc arguments for the init command.
+ #[derive(Parser, Debug)]
+-struct AptosInitArgs {
++pub struct AptosInitArgs {
+     #[clap(long = "private-keys", value_parser = parse_named_private_key, num_args = 0..)]
+-    private_keys: Option<Vec<(Identifier, Ed25519PrivateKey)>>,
++    pub private_keys: Option<Vec<(Identifier, Ed25519PrivateKey)>>,
+     #[clap(long = "initial-coins")]
+-    initial_coins: Option<u64>,
++    pub initial_coins: Option<u64>,
+ }
+ 
+ /// A raw private key -- either a literal or an unresolved name.
+ #[derive(Debug, Clone)]
+-enum RawPrivateKey {
++pub enum RawPrivateKey {
+     Named(Identifier),
+     Anonymous(Ed25519PrivateKey),
+ }
+ 
+ /// Command to initiate a block metadata transaction.
+ #[derive(Parser, Debug)]
+-struct BlockCommand {
++pub struct BlockCommand {
+     #[clap(long = "proposer", value_parser = ParsedAddress::parse)]
+     proposer: ParsedAddress,
+ 
+@@ -177,7 +177,7 @@ struct BlockCommand {
+ 
+ /// Command to view a table item.
+ #[derive(Parser, Debug)]
+-struct ViewTableCommand {
++pub struct ViewTableCommand {
+     #[clap(long = "table_handle")]
+     table_handle: AccountAddress,
+ 
+@@ -197,7 +197,7 @@ fn parse_value(input: &str) -> Result<serde_json::Value, serde_json::Error> {
+ 
+ /// Custom commands for the transactional test flow.
+ #[derive(Parser, Debug)]
+-enum AptosSubCommand {
++pub enum AptosSubCommand {
+     #[clap(name = "block")]
+     BlockCommand(BlockCommand),
+ 
+@@ -785,6 +785,7 @@ impl<'a> MoveTestAdapter<'a> for AptosTestAdapter<'a> {
+         _gas_budget: Option<u64>,
+         extra_args: Self::ExtraPublishArgs,
+     ) -> Result<(Option<String>, CompiledModule)> {
++
+         // TODO: hack to allow the signer to be overridden.
+         // See if we can implement it in a cleaner way.
+         let address = match extra_args.override_signer {
+@@ -999,8 +1000,9 @@ impl<'a> MoveTestAdapter<'a> for AptosTestAdapter<'a> {
+             address: *module.address(),
+             module: module.name().to_owned(),
+             name: resource.to_owned(),
+-            type_args,
++            type_args: type_args.clone(),
+         };
++
+         let state_key = StateKey::resource(&address, &struct_tag)?;
+         match self.storage.get_state_value_bytes(&state_key).unwrap() {
+             None => Ok("[No Resource Exists]".to_owned()),
+@@ -1136,8 +1138,8 @@ pub fn run_aptos_test_with_config(
+         } else {
+             (Some(EXP_EXT.to_owned()), config)
+         };
+-    let v1_lib = precompiled_v1_stdlib_if_needed(&config);
+-    let v2_lib = precompiled_v2_stdlib_if_needed(&config);
++    let v1_lib: Option<&(FullyCompiledProgram, Vec<PackagePaths>)> = precompiled_v1_stdlib_if_needed(&config);
++    let v2_lib: Option<&PrecompiledFilesModules> = precompiled_v2_stdlib_if_needed(&config);
+     AptosVM::set_paranoid_type_checks(true);
+     run_test_impl::<AptosTestAdapter>(config, path, v1_lib, v2_lib, &suffix)
+ }
+diff --git a/aptos-move/aptos-transactional-test-harness/src/lib.rs b/aptos-move/aptos-transactional-test-harness/src/lib.rs
+index 62816e8cda..beb7bb95b7 100644
+--- a/aptos-move/aptos-transactional-test-harness/src/lib.rs
++++ b/aptos-move/aptos-transactional-test-harness/src/lib.rs
+@@ -4,4 +4,13 @@
+ 
+ mod aptos_test_harness;
+ 
+-pub use aptos_test_harness::{run_aptos_test, run_aptos_test_with_config};
++pub use aptos_test_harness::{
++    run_aptos_test, 
++    run_aptos_test_with_config, 
++    AptosTestAdapter, 
++    AptosInitArgs, 
++    RawPrivateKey, 
++    AptosPublishArgs, 
++    AptosRunArgs,
++    SignerAndKeyPair
++};
+diff --git a/crates/aptos-crypto/src/ed25519/ed25519_keys.rs b/crates/aptos-crypto/src/ed25519/ed25519_keys.rs
+index b1f578b0a3..383666ea4a 100644
+--- a/crates/aptos-crypto/src/ed25519/ed25519_keys.rs
++++ b/crates/aptos-crypto/src/ed25519/ed25519_keys.rs
+@@ -48,7 +48,7 @@ impl Ed25519PrivateKey {
+     }
+ 
+     /// Deserialize an Ed25519PrivateKey without any validation checks apart from expected key size.
+-    fn from_bytes_unchecked(
++    pub fn from_bytes_unchecked(
+         bytes: &[u8],
+     ) -> std::result::Result<Ed25519PrivateKey, CryptoMaterialError> {
+         match ed25519_dalek::SecretKey::from_bytes(bytes) {
