@@ -25,7 +25,7 @@ move-binary-format = { git = "https://github.com/otter-sec/aptos-test-adapter", 
 
 # apt-ctf-framework = { git = "https://github.com/otter-sec/apt-ctf-framework" }
 aptos-crypto = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-crypto", branch = "main" }
-apt-ctf-framework = { path = "../../../../apt-ctf-framework" }
+apt-ctf-framework = { path = "../../../" }
 # aptos-crypto = { path = "../../../../../aptos-core/crates/aptos-crypto" }
 
 
