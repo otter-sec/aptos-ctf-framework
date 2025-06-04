@@ -18,15 +18,15 @@ tokio = { version = "1", features = ["full"] }
 # move-binary-format = { path = "../../../../aptos-core/third_party/move/move-binary-format" }
 # legacy-move-compiler = { path = "../../../../aptos-core/third_party/move/move-compiler-v2/legacy-move-compiler" }
 
-move-transactional-test-runner = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-transactional-test-runner", tag = "aptos-core-v7.4.0" }
-move-core-types = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-core-types", tag = "aptos-core-v7.4.0" }
-move-binary-format = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-binary-format", tag = "aptos-core-v7.4.0" }
+move-transactional-test-runner = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-transactional-test-runner", branch = "main" }
+move-core-types = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-core-types", branch = "main" }
+move-binary-format = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-binary-format", branch = "main" }
 legacy-move-compiler = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "legacy-move-compiler", branch = "main" }
 
 # aptos-crypto = { path = "../../../../aptos-core/crates/aptos-crypto" }
-# apt-ctf-framework = { path = "../../../" }
-apt-ctf-framework = { git = "https://github.com/otter-sec/apt-ctf-framework" }
-aptos-crypto = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-crypto", tag = "aptos-core-v7.4.0" }
+apt-ctf-framework = { path = "../../../" }
+# apt-ctf-framework = { git = "https://github.com/otter-sec/apt-ctf-framework" }
+aptos-crypto = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-crypto", branch = "main" }
 
 
 [patch.crates-io]
