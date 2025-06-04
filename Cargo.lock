@@ -11,6 +11,7 @@ checksum = "fe438c63458706e03479442743baae6c88256498e6431708f6dfc520a26515d3"
 [[package]]
 name = "abstract-domain-derive"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -258,6 +259,7 @@ dependencies = [
 [[package]]
 name = "aptos-aggregator"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-types",
  "bcs 0.1.4",
@@ -270,6 +272,7 @@ dependencies = [
 [[package]]
 name = "aptos-api-types"
 version = "0.0.1"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-config",
@@ -298,6 +301,7 @@ dependencies = [
 [[package]]
 name = "aptos-bitvec"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "serde",
  "serde_bytes",
@@ -306,6 +310,7 @@ dependencies = [
 [[package]]
 name = "aptos-block-executor"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "ambassador",
  "anyhow",
@@ -344,6 +349,7 @@ dependencies = [
 [[package]]
 name = "aptos-block-partitioner"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-crypto",
  "aptos-logger",
@@ -364,6 +370,7 @@ dependencies = [
 [[package]]
 name = "aptos-cached-packages"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-framework",
@@ -377,6 +384,7 @@ dependencies = [
 [[package]]
 name = "aptos-config"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-crypto",
@@ -408,6 +416,7 @@ dependencies = [
 [[package]]
 name = "aptos-crypto"
 version = "0.0.3"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aes-gcm",
  "anyhow",
@@ -461,6 +470,7 @@ dependencies = [
 [[package]]
 name = "aptos-crypto-derive"
 version = "0.0.3"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -470,6 +480,7 @@ dependencies = [
 [[package]]
 name = "aptos-dkg"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-crypto",
@@ -501,6 +512,7 @@ dependencies = [
 [[package]]
 name = "aptos-drop-helper"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-infallible",
  "aptos-metrics-core",
@@ -511,6 +523,7 @@ dependencies = [
 [[package]]
 name = "aptos-experimental-layered-map"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "ahash 0.8.12",
  "aptos-crypto",
@@ -526,6 +539,7 @@ dependencies = [
 [[package]]
 name = "aptos-experimental-runtimes"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-runtimes",
  "core_affinity",
@@ -538,6 +552,7 @@ dependencies = [
 [[package]]
 name = "aptos-framework"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-aggregator",
@@ -606,6 +621,7 @@ dependencies = [
 [[package]]
 name = "aptos-gas-algebra"
 version = "0.0.1"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "either",
  "move-core-types",
@@ -614,6 +630,7 @@ dependencies = [
 [[package]]
 name = "aptos-gas-meter"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-gas-algebra",
  "aptos-gas-schedule",
@@ -628,6 +645,7 @@ dependencies = [
 [[package]]
 name = "aptos-gas-schedule"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-gas-algebra",
  "aptos-global-constants",
@@ -640,14 +658,17 @@ dependencies = [
 [[package]]
 name = "aptos-global-constants"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 
 [[package]]
 name = "aptos-infallible"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 
 [[package]]
 name = "aptos-keygen"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-crypto",
  "aptos-types",
@@ -657,6 +678,7 @@ dependencies = [
 [[package]]
 name = "aptos-log-derive"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -666,6 +688,7 @@ dependencies = [
 [[package]]
 name = "aptos-logger"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-infallible",
  "aptos-log-derive",
@@ -688,6 +711,7 @@ dependencies = [
 [[package]]
 name = "aptos-memory-usage-tracker"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-gas-algebra",
  "aptos-gas-meter",
@@ -700,6 +724,7 @@ dependencies = [
 [[package]]
 name = "aptos-metrics-core"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "prometheus",
@@ -708,6 +733,7 @@ dependencies = [
 [[package]]
 name = "aptos-move-stdlib"
 version = "0.1.1"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-gas-schedule",
  "aptos-native-interface",
@@ -724,6 +750,7 @@ dependencies = [
 [[package]]
 name = "aptos-mvhashmap"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-aggregator",
@@ -743,6 +770,7 @@ dependencies = [
 [[package]]
 name = "aptos-native-interface"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-gas-algebra",
  "aptos-gas-schedule",
@@ -759,6 +787,7 @@ dependencies = [
 [[package]]
 name = "aptos-openapi"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "percent-encoding",
  "poem",
@@ -770,6 +799,7 @@ dependencies = [
 [[package]]
 name = "aptos-package-builder"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-framework",
@@ -782,6 +812,7 @@ dependencies = [
 [[package]]
 name = "aptos-protos"
 version = "1.3.1"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "pbjson",
  "prost",
@@ -792,6 +823,7 @@ dependencies = [
 [[package]]
 name = "aptos-resource-viewer"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-types",
@@ -806,6 +838,7 @@ dependencies = [
 [[package]]
 name = "aptos-runtimes"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "rayon",
  "tokio",
@@ -814,6 +847,7 @@ dependencies = [
 [[package]]
 name = "aptos-scratchpad"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-crypto",
  "aptos-drop-helper",
@@ -832,6 +866,7 @@ dependencies = [
 [[package]]
 name = "aptos-sdk-builder"
 version = "0.2.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-types",
@@ -849,6 +884,7 @@ dependencies = [
 [[package]]
 name = "aptos-secure-net"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-logger",
  "aptos-metrics-core",
@@ -866,6 +902,7 @@ dependencies = [
 [[package]]
 name = "aptos-secure-storage"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-crypto",
  "aptos-infallible",
@@ -886,6 +923,7 @@ dependencies = [
 [[package]]
 name = "aptos-short-hex-str"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "mirai-annotations",
  "serde",
@@ -896,6 +934,7 @@ dependencies = [
 [[package]]
 name = "aptos-speculative-state-helper"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-infallible",
@@ -906,6 +945,7 @@ dependencies = [
 [[package]]
 name = "aptos-storage-interface"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-crypto",
@@ -932,6 +972,7 @@ dependencies = [
 [[package]]
 name = "aptos-table-natives"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-gas-schedule",
  "aptos-native-interface",
@@ -949,6 +990,7 @@ dependencies = [
 [[package]]
 name = "aptos-temppath"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "hex",
  "rand 0.7.3",
@@ -957,6 +999,7 @@ dependencies = [
 [[package]]
 name = "aptos-time-service"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-infallible",
  "enum_dispatch",
@@ -969,6 +1012,7 @@ dependencies = [
 [[package]]
 name = "aptos-transaction-simulation"
 version = "0.0.1"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-crypto",
@@ -988,6 +1032,7 @@ dependencies = [
 [[package]]
 name = "aptos-transactional-test-harness"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-api-types",
@@ -1026,6 +1071,7 @@ dependencies = [
 [[package]]
 name = "aptos-types"
 version = "0.0.3"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-bitvec",
@@ -1091,6 +1137,7 @@ dependencies = [
 [[package]]
 name = "aptos-vault-client"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-crypto",
  "base64 0.13.1",
@@ -1106,6 +1153,7 @@ dependencies = [
 [[package]]
 name = "aptos-vm"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "aptos-aggregator",
@@ -1156,6 +1204,7 @@ dependencies = [
 [[package]]
 name = "aptos-vm-environment"
 version = "0.0.1"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-framework",
  "aptos-gas-algebra",
@@ -1178,6 +1227,7 @@ dependencies = [
 [[package]]
 name = "aptos-vm-genesis"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-cached-packages",
  "aptos-crypto",
@@ -1201,6 +1251,7 @@ dependencies = [
 [[package]]
 name = "aptos-vm-logging"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "aptos-crypto",
  "aptos-logger",
@@ -1215,6 +1266,7 @@ dependencies = [
 [[package]]
 name = "aptos-vm-types"
 version = "0.0.1"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "ambassador",
  "anyhow",
@@ -4114,6 +4166,7 @@ checksum = "830d08ce1d1d941e6b30645f1a0eb5643013d835ce3779a5fc208261dbe10f55"
 [[package]]
 name = "legacy-move-compiler"
 version = "0.0.1"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "bcs 0.1.4",
@@ -4368,6 +4421,7 @@ checksum = "1fafa6961cabd9c63bcd77a45d7e3b7f3b552b70417831fb0f56db717e72407e"
 [[package]]
 name = "move-abigen"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "bcs 0.1.4",
@@ -4384,6 +4438,7 @@ dependencies = [
 [[package]]
 name = "move-binary-format"
 version = "0.0.3"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "arbitrary",
@@ -4402,10 +4457,12 @@ dependencies = [
 [[package]]
 name = "move-borrow-graph"
 version = "0.0.1"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 
 [[package]]
 name = "move-bytecode-source-map"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "bcs 0.1.4",
@@ -4420,6 +4477,7 @@ dependencies = [
 [[package]]
 name = "move-bytecode-spec"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "once_cell",
  "quote",
@@ -4429,6 +4487,7 @@ dependencies = [
 [[package]]
 name = "move-bytecode-utils"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "move-binary-format",
@@ -4440,6 +4499,7 @@ dependencies = [
 [[package]]
 name = "move-bytecode-verifier"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "fail",
  "move-binary-format",
@@ -4453,6 +4513,7 @@ dependencies = [
 [[package]]
 name = "move-bytecode-viewer"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "clap 4.5.39",
@@ -4467,6 +4528,7 @@ dependencies = [
 [[package]]
 name = "move-cli"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "clap 4.5.39",
@@ -4496,6 +4558,7 @@ dependencies = [
 [[package]]
 name = "move-command-line-common"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "difference",
@@ -4512,6 +4575,7 @@ dependencies = [
 [[package]]
 name = "move-compiler-v2"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "abstract-domain-derive",
  "anyhow",
@@ -4545,6 +4609,7 @@ dependencies = [
 [[package]]
 name = "move-core-types"
 version = "0.0.4"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "arbitrary",
@@ -4570,6 +4635,7 @@ dependencies = [
 [[package]]
 name = "move-coverage"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "bcs 0.1.4",
@@ -4588,6 +4654,7 @@ dependencies = [
 [[package]]
 name = "move-disassembler"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "clap 4.5.39",
@@ -4604,6 +4671,7 @@ dependencies = [
 [[package]]
 name = "move-docgen"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "clap 4.5.39",
@@ -4622,6 +4690,7 @@ dependencies = [
 [[package]]
 name = "move-errmapgen"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "move-command-line-common",
@@ -4633,6 +4702,7 @@ dependencies = [
 [[package]]
 name = "move-ir-compiler"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "bcs 0.1.4",
@@ -4648,6 +4718,7 @@ dependencies = [
 [[package]]
 name = "move-ir-to-bytecode"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "codespan-reporting",
@@ -4665,6 +4736,7 @@ dependencies = [
 [[package]]
 name = "move-ir-to-bytecode-syntax"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "hex",
@@ -4677,6 +4749,7 @@ dependencies = [
 [[package]]
 name = "move-ir-types"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "hex",
  "move-command-line-common",
@@ -4689,6 +4762,7 @@ dependencies = [
 [[package]]
 name = "move-model"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "codespan",
@@ -4715,6 +4789,7 @@ dependencies = [
 [[package]]
 name = "move-package"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "clap 4.5.39",
@@ -4748,6 +4823,7 @@ dependencies = [
 [[package]]
 name = "move-prover"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "atty",
@@ -4774,6 +4850,7 @@ dependencies = [
 [[package]]
 name = "move-prover-boogie-backend"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "async-trait",
@@ -4802,6 +4879,7 @@ dependencies = [
 [[package]]
 name = "move-prover-bytecode-pipeline"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "abstract-domain-derive",
  "anyhow",
@@ -4817,6 +4895,7 @@ dependencies = [
 [[package]]
 name = "move-prover-lab"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "chrono",
@@ -4834,6 +4913,7 @@ dependencies = [
 [[package]]
 name = "move-resource-viewer"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "hex",
@@ -4846,6 +4926,7 @@ dependencies = [
 [[package]]
 name = "move-stackless-bytecode"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "abstract-domain-derive",
  "anyhow",
@@ -4867,6 +4948,7 @@ dependencies = [
 [[package]]
 name = "move-stdlib"
 version = "0.1.1"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "hex",
@@ -4889,6 +4971,7 @@ dependencies = [
 [[package]]
 name = "move-symbol-pool"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "once_cell",
  "serde",
@@ -4897,6 +4980,7 @@ dependencies = [
 [[package]]
 name = "move-table-extension"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "better_any",
  "bytes",
@@ -4911,6 +4995,7 @@ dependencies = [
 [[package]]
 name = "move-transactional-test-runner"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "clap 4.5.39",
@@ -4940,6 +5025,7 @@ dependencies = [
 [[package]]
 name = "move-unit-test"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "better_any",
@@ -4971,6 +5057,7 @@ dependencies = [
 [[package]]
 name = "move-vm-metrics"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "once_cell",
  "prometheus",
@@ -4979,6 +5066,7 @@ dependencies = [
 [[package]]
 name = "move-vm-runtime"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "ambassador",
  "better_any",
@@ -5003,6 +5091,7 @@ dependencies = [
 [[package]]
 name = "move-vm-test-utils"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "anyhow",
  "bytes",
@@ -5019,6 +5108,7 @@ dependencies = [
 [[package]]
 name = "move-vm-types"
 version = "0.1.0"
+source = "git+https://github.com/otter-sec/aptos-test-adapter?branch=main#e89c0c6c02a1151281b7ecda4a2ecd19b89f3182"
 dependencies = [
  "ambassador",
  "bcs 0.1.4",
