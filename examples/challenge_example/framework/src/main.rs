@@ -1,4 +1,4 @@
- use std::env;
+use std::env;
 use std::error::Error;
 use std::fmt;
 use std::io::{Read, Write};
@@ -16,9 +16,7 @@ use move_core_types::{
     language_storage::{TypeTag, ModuleId },
     value::MoveValue,
 };
-use move_compiler::{
-    shared::{ NumericalAddress },
-};
+use legacy_move_compiler::shared::NumericalAddress;
 
 async fn handle_client(mut stream: TcpStream) -> Result<(), Box<dyn Error>> {
     

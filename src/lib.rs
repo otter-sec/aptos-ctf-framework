@@ -16,10 +16,7 @@ use move_transactional_test_runner::{
     tasks::{ InitCommand, SyntaxChoice, TaskInput },
     vm_test_harness::{ PrecompiledFilesModules, TestRunConfig },
 };
-use move_compiler::{
-    FullyCompiledProgram,
-    shared::{ NumericalAddress, PackagePaths },
-};
+use legacy_move_compiler::shared::NumericalAddress;
 use move_core_types::{
     identifier::{ IdentStr, Identifier },
     account_address::AccountAddress,
@@ -29,32 +26,37 @@ use move_core_types::{
 use move_command_line_common::{
     address::ParsedAddress,
 };
+use move_model::metadata::LanguageVersion;
 
 use tempfile::NamedTempFile;
 use once_cell::sync::Lazy;
 use std::error;
 
-static PRECOMPILED_APTOS_FRAMEWORK_V2: Lazy<PrecompiledFilesModules> = Lazy::new(|| {
-    let named_address_mapping_strings: Vec<String> = aptos_framework::named_addresses()
-        .iter()
-        .map(|(string, num_addr)| format!("{}={}", string, num_addr))
-        .collect();
+static PRECOMPILED_APTOS_FRAMEWORK_V2_WITH_EXPERIMENTAL: Lazy<PrecompiledFilesModules> =
+    Lazy::new(|| {
+        let named_address_mapping_strings: Vec<String> = aptos_framework::named_addresses()
+            .iter()
+            .map(|(string, num_addr)| format!("{}={}", string, num_addr))
+            .collect();
 
-    let options = move_compiler_v2::Options {
-        sources: aptos_cached_packages::head_release_bundle()
+        let all_sources = aptos_cached_packages::head_release_bundle()
             .files()
-            .unwrap(),
-        dependencies: vec![],
-        named_address_mapping: named_address_mapping_strings,
-        known_attributes: aptos_framework::extended_checks::get_all_attribute_names().clone(),
-        language_version: None,
-        ..move_compiler_v2::Options::default()
-    };
+            .unwrap();
 
-    let (_global_env, modules) = move_compiler_v2::run_move_compiler_to_stderr(options)
-        .expect("stdlib compilation succeeds");
-    PrecompiledFilesModules::new(APTOS_FRAMEWORK_FILES.clone(), modules)
-});
+        let options = move_compiler_v2::Options {
+            sources: all_sources.clone(),
+            dependencies: vec![],
+            named_address_mapping: named_address_mapping_strings.clone(),
+            known_attributes: aptos_framework::extended_checks::get_all_attribute_names().clone(),
+            language_version: Some(LanguageVersion::latest()),
+            ..move_compiler_v2::Options::default()
+        };
+
+        let (_global_env, modules) = move_compiler_v2::run_move_compiler_to_stderr(options.clone())
+            .expect("framework compilation succeeds");
+
+        PrecompiledFilesModules::new(all_sources, modules)
+    });
 
 static APTOS_FRAMEWORK_FILES: Lazy<Vec<String>> = Lazy::new(|| {
     aptos_cached_packages::head_release_bundle()
@@ -68,10 +70,10 @@ pub fn initialize<'a>(
 ) -> AptosTestAdapter<'a> {
 
     let default_syntax = SyntaxChoice::Source;
-    let comparison_mode = false;
-    let run_config = TestRunConfig::CompilerV1;
-    let v1_lib: Option<&(FullyCompiledProgram, Vec<PackagePaths>)> = None;
-    let v2_lib: Option<&PrecompiledFilesModules> = Some(&*PRECOMPILED_APTOS_FRAMEWORK_V2);
+    // let language_version = LanguageVersion::latest();
+    let v2_lib: &PrecompiledFilesModules = &*PRECOMPILED_APTOS_FRAMEWORK_V2_WITH_EXPERIMENTAL;
+
+    let run_config = TestRunConfig::compiler_v2(LanguageVersion::latest(), vec![("attach-compiled-module".to_owned(),true)]);
 
     let command = (
         InitCommand { named_addresses }, 
@@ -98,7 +100,7 @@ pub fn initialize<'a>(
         data,
     });
 
-    let (adapter, _result_opt) = AptosTestAdapter::init(default_syntax, comparison_mode, run_config, v1_lib, v2_lib, init_opt);
+    let (adapter, _result_opt) = AptosTestAdapter::init(default_syntax, run_config, v2_lib, init_opt);
     println!("[*] Initialization Result: {:#?}", _result_opt);
     println!("[*] Successfully Initialized");
     

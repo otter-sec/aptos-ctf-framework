@@ -15,30 +15,34 @@ once_cell = "1.10.0"
 tempfile = "3.3.0"
 rand = "0.7.3"
 
-aptos-framework = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-framework", branch = "main"  }
-aptos-cached-packages = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-cached-packages", branch = "main"  }
+aptos-framework = { path = "../aptos-core/aptos-move/framework/" }
+aptos-cached-packages = { path = "../aptos-core/aptos-move/framework/cached-packages" }
 
-# aptos-transactional-test-harness = { path = "../../aptos-core/aptos-move/aptos-transactional-test-harness" }
-# aptos-crypto = { path = "../../aptos-core/crates/aptos-crypto" }
+# aptos-framework = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-framework", branch = "main"  }
+# aptos-cached-packages = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-cached-packages", branch = "main"  }
 
-aptos-transactional-test-harness = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-transactional-test-harness", branch = "main" }
-aptos-crypto = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-crypto", branch = "main" }
+aptos-transactional-test-harness = { path = "../aptos-core/aptos-move/aptos-transactional-test-harness" }
+aptos-crypto = { path = "../aptos-core/crates/aptos-crypto" }
 
-# move-transactional-test-runner = { path = "../../aptos-core/third_party/move/testing-infra/transactional-test-runner" }
-# move-model = { path = "../../aptos-core/third_party/move/move-model" }
-# move-compiler-v2 = { path = "../../aptos-core/third_party/move/move-compiler-v2" }
-# move-compiler = { path = "../../aptos-core/third_party/move/move-compiler" }
-# move-core-types = { path = "../../aptos-core/third_party/move/move-core/types" }
-# move-binary-format = { path = "../../aptos-core/third_party/move/move-binary-format" }
-# move-command-line-common = { path = "../../aptos-core/third_party/move/move-command-line-common" }
+# aptos-transactional-test-harness = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-transactional-test-harness", branch = "main" }
+# aptos-crypto = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-crypto", branch = "main" }
 
-move-transactional-test-runner = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-transactional-test-runner", branch = "main" }
-move-model = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-model", branch = "main" }
-move-compiler-v2 = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-compiler-v2", branch = "main" }
-move-compiler = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-compiler", branch = "main" }
-move-core-types = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-core-types", branch = "main" }
-move-binary-format = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-binary-format", branch = "main" }
-move-command-line-common = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-command-line-common", branch = "main" }
+move-transactional-test-runner = { path = "../aptos-core/third_party/move/testing-infra/transactional-test-runner" }
+move-model = { path = "../aptos-core/third_party/move/move-model" }
+move-compiler-v2 = { path = "../aptos-core/third_party/move/move-compiler-v2" }
+legacy-move-compiler = { path = "../aptos-core/third_party/move/move-compiler-v2/legacy-move-compiler" }
+move-core-types = { path = "../aptos-core/third_party/move/move-core/types" }
+move-binary-format = { path = "../aptos-core/third_party/move/move-binary-format" }
+move-command-line-common = { path = "../aptos-core/third_party/move/move-command-line-common" }
+
+# move-transactional-test-runner = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-transactional-test-runner", branch = "main" }
+# move-model = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-model", branch = "main" }
+# move-compiler-v2 = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-compiler-v2", branch = "main" }
+# move-compiler = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-compiler", branch = "main" }
+# move-core-types = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-core-types", branch = "main" }
+# move-binary-format = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-binary-format", branch = "main" }
+# move-command-line-common = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-command-line-common", branch = "main" }
+# legacy-move-compiler = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "legacy-move-compiler", branch = "main" }
 
 [patch.crates-io]
 x25519-dalek = { git = "https://github.com/aptos-labs/x25519-dalek", branch = "zeroize_v1" }
