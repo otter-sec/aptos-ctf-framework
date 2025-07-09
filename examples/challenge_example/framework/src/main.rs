@@ -17,6 +17,17 @@ use move_core_types::{
     value::MoveValue,
 };
 use legacy_move_compiler::shared::NumericalAddress;
+use apt_ctf_framework::AptosTF;
+
+macro_rules! handle_err {
+    ($stream:expr, $msg:expr, $err:expr) => {{
+        let full = format!("[SERVER ERROR] {}: {}", $msg, $err);
+        eprintln!("{}", full);
+        let _ = $stream.write_all(full.as_bytes());   // ignore write failures
+        drop($stream);                                // close socket
+        return Err::<(), Box<dyn std::error::Error>>(full.into());
+    }};
+}
 
 async fn handle_client(mut stream: TcpStream) -> Result<(), Box<dyn Error>> {
     
@@ -61,29 +72,49 @@ async fn handle_client(mut stream: TcpStream) -> Result<(), Box<dyn Error>> {
     account_priv_keys.push((Identifier::new("challenger".to_string()).unwrap(), challenger_key));
     account_priv_keys.push((Identifier::new("solver".to_string()).unwrap(), solver_key));
 
-    // Initialize CTF Framework (Adapter)
-    let mut adapter = apt_ctf_framework::initialize(
+    // Initialize CTF Framework (AptosTF)
+    let mut aptostf = match AptosTF::initialize(
         named_addresses,
         account_priv_keys
-    );
+    ) {
+        Ok(tf) => tf,
+        Err(e) => handle_err!(stream, "AptosTF initialization failed", e),
+    };
 
     // Publish Challenge Module
     let mod_path = format!("./challenge/build/challenge/bytecode_modules/{}.mv", modules[0]);
-    let mod_bytes: Vec<u8> = std::fs::read(mod_path)?;
+    let mod_bytes: Vec<u8> = match std::fs::read(mod_path) {
+        Ok(data) => data,
+        Err(e) => handle_err!(stream, format!("Failed to read {}", modules[0]), e),
+    };
 
-    let module : CompiledModule = CompiledModule::deserialize(&mod_bytes).unwrap();
+    let module : CompiledModule = match CompiledModule::deserialize(&mod_bytes) {
+        Ok(m) => m,
+        Err(e) => handle_err!(stream, "Challenge deserialization failed", e),
+    };
 
-    let chall_addr = apt_ctf_framework::publish_compiled_module(
-        &mut adapter,
+    let chall_addr = match aptostf.publish_compiled_module(
         module,
         "challenger".to_string(),
         "challenge".to_string(),
-    );
+    ) {
+        Ok(addr) => addr,
+        Err(e) => handle_err!(stream, "Challenge module publish failed", e),
+    };
     println!("[SERVER] Module published at: {:?}", chall_addr); 
 
     // Read Solution Module
     let mut solution_data = [0 as u8; 2000];
-    let _solution_size = stream.read(&mut solution_data)?;
+    let _solution_size = match stream.read(&mut solution_data) {
+        Ok(size) => {
+            if size == 0 {
+                handle_err!(stream, "No data read from stream", "size is zero");
+            } else {
+                size
+            }
+        }
+        Err(e) => handle_err!(stream, "Failed to read solution data", e),
+    };
 
     // Send Challenge Address
     let mut output = String::new();
@@ -95,20 +126,22 @@ async fn handle_client(mut stream: TcpStream) -> Result<(), Box<dyn Error>> {
         ),
     )
     .unwrap();
-    stream.write(output.as_bytes()).unwrap();
+    stream.write_all(output.as_bytes())?;
 
     // Publish Solution Module
-    let module_solve : CompiledModule = CompiledModule::deserialize(&solution_data).unwrap();
+    let module_solve : CompiledModule = match CompiledModule::deserialize(&solution_data) {
+        Ok(m) => m,
+        Err(e) => handle_err!(stream, "Solution deserialization failed", e),
+    };
 
-    let mut chall_dependencies: Vec<String> = Vec::new();
-    chall_dependencies.push(String::from("challenge"));
-
-    let sol_addr = apt_ctf_framework::publish_compiled_module(
-        &mut adapter,
+    let sol_addr = match aptostf.publish_compiled_module(
         module_solve,
         "solver".to_string(),
-        "solve".to_string(),
-    );
+        "solution".to_string(),
+    ) {
+        Ok(addr) => addr,
+        Err(e) => handle_err!(stream, "Solution module publish failed", e),
+    };
     println!("[SERVER] Module published at: {:?}", sol_addr); 
 
     // Send Solution Address
@@ -121,28 +154,33 @@ async fn handle_client(mut stream: TcpStream) -> Result<(), Box<dyn Error>> {
         ),
     )
     .unwrap();
-    stream.write(output.as_bytes()).unwrap();
+    stream.write_all(output.as_bytes())?;
 
     // Call initialize Function
     let args_init: Vec<MoveValue> = Vec::new();
     let mut type_args : Vec<TypeTag> = Vec::new();
 
-    let ret_val = apt_ctf_framework::call_function(
-        &mut adapter,
+    let ret_val = match aptostf.call_function(
         chall_addr,
         "welcome",
         "initialize",
         "challenger".to_string(),
         args_init,
         type_args,
-    );
+    ) {
+        Ok(output) => output,
+        Err(e) => handle_err!(stream, "Calling initialize failed", e),
+    };
     println!("[SERVER] Return value {:#?}", ret_val);
     println!("");
 
     // Check Resource (View Object)
     let mut owner_address = AccountAddress::from_hex_literal("0xf75daa73fc071f93593335eb9033da804777eb94491650dd3f095ce6f778acb6").unwrap();
     let mut module_id: ModuleId = ModuleId::new(chall_addr, Identifier::new(modules[0]).unwrap());
-    let mut object_output = apt_ctf_framework::view_object(&mut adapter, owner_address, &module_id, &ident_str!("ChallengeStatus"), Vec::new());
+    let mut object_output = match aptostf.view_object(owner_address, &module_id, &ident_str!("ChallengeStatus"), Vec::new()) {
+        Ok(output) => output,
+        Err(e) => handle_err!(stream, "Error viewing object", e),
+    };
     println!("Object Output: {:#?}", object_output);
 
 
@@ -150,22 +188,27 @@ async fn handle_client(mut stream: TcpStream) -> Result<(), Box<dyn Error>> {
     let args_solve: Vec<MoveValue> = Vec::new();
     type_args = Vec::new();
 
-    let ret_val = apt_ctf_framework::call_function(
-        &mut adapter,
+    let ret_val = match aptostf.call_function(
         sol_addr,
         "exploit",
         "solve",
         "solver".to_string(),
         args_solve,
         type_args,
-    );
+    ) {
+        Ok(output) => output,
+        Err(e) => handle_err!(stream, "Calling solve failed", e),
+    };
     println!("[SERVER] Return value {:#?}", ret_val);
     println!("");
 
     // Check Resource (View Object)
     owner_address = AccountAddress::from_hex_literal("0xf75daa73fc071f93593335eb9033da804777eb94491650dd3f095ce6f778acb6").unwrap();
     module_id = ModuleId::new(chall_addr, Identifier::new(modules[0]).unwrap());
-    object_output = apt_ctf_framework::view_object(&mut adapter, owner_address, &module_id, &ident_str!("ChallengeStatus"), Vec::new());
+    object_output = match aptostf.view_object(owner_address, &module_id, &ident_str!("ChallengeStatus"), Vec::new()) {
+        Ok(output) => output,
+        Err(e) => handle_err!(stream, "Error viewing object after solve", e),
+    };
     println!("Object Output: {:#?}", object_output);
 
     // Check Solution
@@ -173,8 +216,7 @@ async fn handle_client(mut stream: TcpStream) -> Result<(), Box<dyn Error>> {
     let type_args : Vec<TypeTag> = Vec::new();
 
     // Call is_solved Function
-    let sol_ret = apt_ctf_framework::call_function(
-        &mut adapter,
+    let sol_ret = aptostf.call_function(
         chall_addr,
         "welcome",
         "is_solved",
@@ -187,7 +229,7 @@ async fn handle_client(mut stream: TcpStream) -> Result<(), Box<dyn Error>> {
 
     // Validate Solution
     match sol_ret {
-        Ok(()) => {
+        Ok(_) => {
             println!("[SERVER] Correct Solution!");
             println!("");
             if let Ok(flag) = env::var("FLAG") {
@@ -220,12 +262,13 @@ async fn main() -> Result<(), Box<dyn Error>> {
         match stream {
             Ok(stream) => {
                 println!("[SERVER] New connection: {}", stream.peer_addr()?);
-                    let result = local.run_until( async move {
+                    let _ = local.run_until( async move {
                         tokio::task::spawn_local( async {
-                            handle_client(stream).await.unwrap();
+                            if let Err(e) = handle_client(stream).await {
+                                eprintln!("[SERVER] Connection Closed. Error: {}", e);
+                            }
                         }).await.unwrap();
                     }).await;
-                    println!("[SERVER] Result: {:?}", result);
             }
             Err(e) => {
                 println!("[SERVER] Error: {}", e);
