@@ -14,6 +14,8 @@ categories = ["concurrency", "cryptography::cryptocurrencies", "simulation"]
 once_cell = "1.10.0"
 tempfile = "3.3.0"
 rand = "0.7.3"
+bcs = { git = "https://github.com/aptos-labs/bcs.git", rev = "d31fab9d81748e2594be5cd5cdf845786a30562d" }
+serde = { version = "1.0.193", features = ["derive", "rc"] }
 
 # aptos-framework = { path = "../aptos-core/aptos-move/framework/" }
 # aptos-cached-packages = { path = "../aptos-core/aptos-move/framework/cached-packages" }
@@ -42,6 +44,9 @@ move-core-types = { git = "https://github.com/otter-sec/aptos-test-adapter", pac
 move-binary-format = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-binary-format", branch = "main" }
 move-command-line-common = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-command-line-common", branch = "main" }
 legacy-move-compiler = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "legacy-move-compiler", branch = "main" }
+move-symbol-pool = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-symbol-pool", branch = "main" }
+move-ir-types = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-ir-types", branch = "main" }
+move-bytecode-source-map = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-bytecode-source-map", branch = "main" }
 
 [patch.crates-io]
 x25519-dalek = { git = "https://github.com/aptos-labs/x25519-dalek", branch = "zeroize_v1" }
@@ -60,8 +65,12 @@ pretty_assertions_sorted = "1.2.3"
 #     "adapter.patch",
 # ]
 
-# [build-dependencies]
-# cargo-patch = "0.3"
-# x25519-dalek = { git = "https://github.com/aptos-labs/x25519-dalek", branch = "zeroize_v1" }
-# merlin = { git = "https://github.com/aptos-labs/merlin" }
-# serde-reflection = { git = "https://github.com/aptos-labs/serde-reflection", rev = "73b6bbf748334b71ff6d7d09d06a29e3062ca075" }
+[build-dependencies]
+bcs = { git = "https://github.com/aptos-labs/bcs.git", rev = "d31fab9d81748e2594be5cd5cdf845786a30562d" }
+serde = { version = "1.0.193", features = ["derive", "rc"] }
+move-compiler-v2 = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-compiler-v2", branch = "main" }
+move-binary-format = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-binary-format", branch = "main" }
+legacy-move-compiler = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "legacy-move-compiler", branch = "main" }
+aptos-framework = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-framework", branch = "main"  }
+aptos-cached-packages = { git = "https://github.com/otter-sec/aptos-test-adapter", package="aptos-cached-packages", branch = "main"  }
+move-model = { git = "https://github.com/otter-sec/aptos-test-adapter", package = "move-model", branch = "main" }
