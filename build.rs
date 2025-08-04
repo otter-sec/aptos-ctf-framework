@@ -5,6 +5,7 @@ use move_model::metadata::LanguageVersion;
 
 fn main() {
     println!("cargo:rerun-if-changed=build.rs");
+    println!("cargo:rerun-if-env-changed=FRAMEWORK_OUT_DIR");
     
     // Compile the Aptos framework
     let named_address_mapping_strings: Vec<String> = aptos_framework::named_addresses()
